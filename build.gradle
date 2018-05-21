@@ -1,0 +1,27 @@
+version '1.0-SNAPSHOT'
+
+apply plugin: 'java'
+apply from: 'dependencies.gradle'
+
+sourceCompatibility = 1.8
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    testCompile group: 'junit', name: 'junit', version: '4.12'
+    compile packages.atlas
+}
+
+
+task pbfToAtlas(type: JavaExec){
+    classpath = sourceSets.main.runtimeClasspath
+    main = 'Main'
+
+    def flags = project.properties.findAll {property -> property.key.equals("input") || property.key.equals("output")} collect {it.value}
+
+
+
+    args flags
+}
