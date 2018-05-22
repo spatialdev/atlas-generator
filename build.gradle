@@ -15,7 +15,7 @@ dependencies {
 }
 
 
-task pbfToAtlas(type: JavaExec){
+task generate(type: JavaExec){
     classpath = sourceSets.main.runtimeClasspath
     main = 'Main'
 
