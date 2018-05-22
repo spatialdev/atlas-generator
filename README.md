@@ -24,12 +24,12 @@ This is the same as AtlasChecks.
 
 ##Python Example
 
-A simple python script to loop through a directory of PBF's and convert them to Atlas files. 
+A simple python script to loop through a directory of PBF's and convert them to Atlas files.  
+This script is set to run from a sibling level directory to atlas-generator, named atlas-generator_py_test.
 
 ```python
 import os
 
 for file in os.listdir("pbfs"):
-	print file
-	os.system("gradle pbfToAtlas -p ../pbfToAtlas -PcmdArgs=../pbfToAtlas_py_test/pbfs/{0},../pbfToAtlas_py_test/atlas/{1}.atlas".format(file,file.split('.')[0]))
+	os.system("gradle pbfToAtlas -p ../atlas-generator -Pinput=../atlas-generator_py_test/pbfs/{0} -Poutput=../atlas-generator_py_test/atlas/{1}.atlas".format(file,file.split('.')[0]))
 ```
