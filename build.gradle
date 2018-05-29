@@ -19,7 +19,7 @@ task generate(type: JavaExec){
     classpath = sourceSets.main.runtimeClasspath
     main = 'Main'
 
-    def flags = project.properties.findAll {property -> property.key.equals("input") || property.key.equals("output")} collect {it.value}
+    def flags = project.properties.findAll {property -> property.key.equals("input") || property.key.equals("output") || property.key.equals("iso")} collect {it.value}
 
 
 

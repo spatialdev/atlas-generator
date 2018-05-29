@@ -15,7 +15,7 @@ public class Main {
             throw new IOError(new Throwable("expected file path for output, got directory"));
         }
 
-        PbfToAtlas atlas = new PbfToAtlas(pbf);
+        PbfToAtlas atlas = new PbfToAtlas(pbf,args[2]);
         atlas.save(out);
     }
 }

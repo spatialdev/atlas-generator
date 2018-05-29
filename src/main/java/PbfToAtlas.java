@@ -11,9 +11,9 @@ public class PbfToAtlas
     private final OsmPbfLoader atlas;
     private final static MultiPolygon polygon = MultiPolygon.MAXIMUM;
 
-    public PbfToAtlas(File pbf) {
+    public PbfToAtlas(File pbf, String iso) {
 
-        final CountryBoundaryMap map = CountryBoundaryMap.fromBoundaryMap(Collections.singletonMap("UNK", this.polygon));
+        final CountryBoundaryMap map = CountryBoundaryMap.fromBoundaryMap(Collections.singletonMap(iso, this.polygon));
         final AtlasLoadingOption option = AtlasLoadingOption.createOptionWithAllEnabled(map);
         this.atlas = new OsmPbfLoader(pbf, this.polygon, option);
     }
