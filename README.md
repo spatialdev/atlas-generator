@@ -5,10 +5,10 @@ This program uses [Atlas](https://github.com/osmlab/atlas)'s built in converter.
 
 ## Usage
 
-The program uses Gradle, and operates using the task `pbfToAtlas`.  
+The program uses Gradle, and operates using the task `generate`.  
 
 It takes three arguments:  
-`-Pinout`: input file path  
+`-Pinput`: input file path  
 `-Poutput`: output file path
 `-Piso`: iso code to assign to all the features
 
