@@ -31,3 +31,12 @@ task generate(type: JavaExec){
 
     args flags
 }
+
+task searchShard(type: JavaExec){
+    classpath = sourceSets.main.runtimeClasspath
+    main = 'ShardSearch'
+
+    def flags = project.properties.findAll {property -> property.key.equals("input") || property.key.equals("output") || property.key.equals("ids")} collect {it.value}
+
+    args flags
+}
