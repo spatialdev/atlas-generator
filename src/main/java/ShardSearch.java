@@ -55,6 +55,12 @@ public class ShardSearch
                 shards.add(shard);
             }
         }
-        ShardsToFatlas.ShardsToFatlas(output, shards.stream().map(File::new).toArray(File[]::new));
+        if (shards.size() > 0)
+        {
+            ShardsToFatlas.ShardsToFatlas(output, shards.stream().map(File::new).toArray(File[]::new));
+        }
+        else {
+            System.out.println("No matches found");
+        }
     }
 }
