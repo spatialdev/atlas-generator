@@ -28,6 +28,7 @@ public class ShardSearch
     }
 
     public static void ShardSearch(final File input, final File output, final String[] ids){
+        // Create a node, way and relation search id for each atlas id
         final List<String> idList = new ArrayList<>();
         for (final String id : ids){
             final String osmId = id.substring(0,id.length()-6);
@@ -37,15 +38,19 @@ public class ShardSearch
             idList.add(String.format("OSM_R_%1$s_%2$s", osmId, section));
         }
 
+        // Redirect System.out to capture AtlasFindByFeatureIdentifierLocatorSubCommand output
         final PrintStream originalOut = System.out;
         final captureOutputStream captureStream = new captureOutputStream(originalOut);
         System.setOut(captureStream);
 
+        // Run AtlasFindByFeatureIdentifierLocatorSubCommand
         new AtlasReader("find", String.format("-input=%1$s", input.getPath()), String.format("-id=%1$s", String.join(",", idList)))
                 .runWithoutQuitting("find", String.format("-input=%1$s", input.getPath()), String.format("-id=%1$s", String.join(",", idList)));
 
+        // Reset System.out
         System.setOut(originalOut);
 
+        //Get the atlas shard names from the captured output
         final List<String> shards = new ArrayList<>();
         final Matcher matchShard = Pattern.compile("--> \\[.*:(.*\\.atlas)").matcher(captureStream.log);
         while (matchShard.find()){
@@ -55,6 +60,8 @@ public class ShardSearch
                 shards.add(shard);
             }
         }
+
+        // Deshard the the found shards
         if (shards.size() > 0)
         {
             ShardsToFatlas.ShardsToFatlas(output, shards.stream().map(File::new).toArray(File[]::new));
