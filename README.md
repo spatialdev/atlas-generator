@@ -64,7 +64,7 @@ It takes three argument:
 `-Poutput`: output file path
 `-Pids`: list of Atlas ids
 
-`./gradlew deshard -Pinput=inputDirPath -Poutput=outputFilePath -Pids=atlasIds`
+`./gradlew searchShard -Pinput=inputDirPath -Poutput=outputFilePath -Pids=atlasIds`
 
 If running from a location other than the root of this program use `-p` to define the root.  
 Relative paths of `inputDirPath` and `outputFilePath` are always from the project root. 
