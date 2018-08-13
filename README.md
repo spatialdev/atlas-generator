@@ -50,6 +50,25 @@ It takes two arguments:
 If running from a location other than the root of this program use `-p` to define the root.  
 Relative paths of `inputDirPath` and `outputFilePath` are always from the project root. 
 
+## Search and De-shard an Atlas
+
+The searchShard task takes a directory of Atlas shards and Atlas ids, find the shards that contains those ids, 
+and returns a de-sharded Atlas from those shards.
+
+### Usage
+
+The program uses Gradle, and operates using the task `searchShard`.
+
+It takes three argument:
+`-Pinput`: input directory path  
+`-Poutput`: output file path
+`-Pids`: list of Atlas ids
+
+`./gradlew searchShard -Pinput=inputDirPath -Poutput=outputFilePath -Pids=atlasIds`
+
+If running from a location other than the root of this program use `-p` to define the root.  
+Relative paths of `inputDirPath` and `outputFilePath` are always from the project root. 
+
 ## Size Constraint
 
 This program suffers from the same size constraints as all implementations of Atlas.  
